@@ -27,6 +27,23 @@ class Node{
 	 public void setNext(Node n){
 		 this.data = n;
 	 }
+	 
+}
 
-
+class LinkedList{
+	private Node start;
+	private Node end;
+	private int size;
+	
+	public LinkedList(){
+		start = null;
+		end = null;
+		size = 0;
+		
+	}
+	
+	public void insertAtEnd(){}
+	
+	
+	
 }
