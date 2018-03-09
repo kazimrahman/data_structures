@@ -15,17 +15,17 @@ class Node{
 	}
 	
 	public int getData(){
-		return n.data;
+		return this.data;
 	}
-	 public void setData(int n){
-		 this.data = n;
+	 public void setData(int x){
+		 this.data = x;
 	 }
 
 	public Node getNext(){
-		return n.next;
+		return this.next;
 	}
 	 public void setNext(Node n){
-		 this.data = n;
+		 this.next = n;
 	 }
 	 
 }
