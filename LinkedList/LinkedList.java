@@ -46,6 +46,47 @@ class LinkedList{
 		return this.size;
 	}
 	
+	/*public void reverse(){
+		Node prev = null;
+		Node track = null;
+		
+		if(head == null || head.next == null){
+			return;
+		}
+		
+		tail = head;
+		while(head != null){
+			track = head.next;
+			head.next = prev;
+			prev = head;
+			head = track;
+		}
+		
+		
+		return;
+	}*/
+	
+	public void deleteEnd(){
+		if(head == null){return;}
+		
+		Node track = head;
+		while(track.next != tail){
+			track = track.next;
+			
+		}	
+		tail = track;
+		size--;
+		return;
+	}
+	
+	public void deleteFront(){
+		if(head == null){return;}
+		
+		head = head.next;
+		size--;
+		return;
+	}
+	
 	public void addEnd(int x){
 		Node n = new Node(x);
 		if(head == null){
@@ -62,18 +103,40 @@ class LinkedList{
 		
 	}
 	
+	public void addFront(int x){
+		Node n = new Node(x);
+		
+		if(head == null){
+			head = n;
+			tail = head;
+			size++;
+			return;
+		}else{
+			n.next = head;
+			head = n;
+			size++;		
+		}
+		
+	}
+	
 	public void printList(){
 		if (head == null){
 			System.out.println("List is empty");
 			return;
 		}
 		Node tmp = head;
-		
-		for(int i = 0; i < size; i++){
-			System.out.println(tmp.data);
+		System.out.print("[ " + tmp.data);
+		tmp = tmp.next;
+		if(tmp!=null){
+		for(int i = 1; i < size; i++){
+			System.out.print(" --> "+tmp.data);
 			tmp = tmp.next;
 			
 		}
+		}
+		System.out.println(" ]");
+		
+		
 		return;
 		
 	}

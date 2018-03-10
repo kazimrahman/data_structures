@@ -11,9 +11,14 @@ class LinkedListDriver{
 		l.addEnd(2);
 		l.addEnd(1);
 		
+		l.addFront(6);
 		
 		
-		System.out.println(l.getSize());
+		//System.out.println(l.getSize());
+		l.printList();
+		l.deleteEnd();
+		//l.reverse();
+		l.deleteFront();
 		l.printList();
 		
 	}
