@@ -15,7 +15,9 @@ class Sorts{
 		}
 		System.out.println(Arrays.toString(nums));
 		
-		selectSort(nums);
+		//selectSort(nums);
+		insertionSort(nums);
+		//bubbleSort(nums);
 		System.out.println(Arrays.toString(nums));
 
 		
@@ -38,6 +40,34 @@ class Sorts{
 		
 	}
 	
+	public static void bubbleSort(int[] a){
+		int n = a.length;
+		for(int i = 0; i < n; i++){
+			for(int j = 0;j<n-i-1;j++){
+				if(a[j] > a[j+1]){
+					int temp = a[j];
+					a[j] = a[j+1];
+					a[j+1] = temp;
+				}
+			} 
+		}
+		
+		return;
+	}
+	
+	static void insertionSort(int[] a){
+		int n = a.length;
+		for(int i = 1; i < n; i++){
+			int val = a[i];
+			int hole = i;
+			while(hole>=0 && a[hole]<a[hole-1]){
+				a[hole] = a[hole-1];
+				hole--;
+			}
+			a[hole] = val;
+		}
+		
+	}
 	
 	
 	
