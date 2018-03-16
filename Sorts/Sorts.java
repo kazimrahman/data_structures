@@ -5,7 +5,7 @@ import java.lang.*;
 class Sorts{
 	
 	public static void main(String args[]){
-		Scanner sc = new Scanner(System.in);
+		/*Scanner sc = new Scanner(System.in);
 		System.out.println("Enter size of array");
 		int nums[] = new int[sc.nextInt()];
 		int i = 0;
@@ -16,9 +16,19 @@ class Sorts{
 		System.out.println(Arrays.toString(nums));
 		
 		//selectSort(nums);
-		insertionSort(nums);
+		//insertionSort(nums);
 		//bubbleSort(nums);
-		System.out.println(Arrays.toString(nums));
+		//mergeSort(nums);*/
+		int[] a = {2,4,6,8};
+		int[] b = {1,3,5,7};
+		int c[] = new int[a.length+b.length];
+		
+		c = Merge(a,b,c);
+		
+		System.out.println(Arrays.toString(c));
+		
+		int x = 5;
+		
 
 		
 	}
@@ -59,13 +69,53 @@ class Sorts{
 		int n = a.length;
 		for(int i = 1; i < n; i++){
 			int val = a[i];
-			int hole = i;
-			while(hole>=0 && a[hole]<a[hole-1]){
-				a[hole] = a[hole-1];
+			int hole = i-1;
+			while(hole>=0 && a[hole]>val){
+				a[hole+1] = a[hole];
 				hole--;
+				
 			}
-			a[hole] = val;
+			a[hole+1] = val;
 		}
+		return;
+	}
+	
+	static void MergeSort(int[] a){
+		
+	}
+	
+	static int[] Merge(int[] L, int[] R, int[] A){
+		int nL = L.length;
+		int nR = R.length;
+		
+		int i, j, k;
+		i = j = k = 0;
+		
+		while(nL > i && nR > j){
+			if(L[i] > R[j]){
+				A[k] = R[j];
+				i++;
+				k++;
+				
+			}else if(R[j] > L[i]){
+				A[k] = L[i];
+				j++;
+				k++;
+				
+			}
+		}
+		while(i == nL && j < nR){
+			A[k] = R[j];
+			j++;
+			k++;
+		}
+		while(i < nL && j == nR){
+			A[k] = L[i];
+			i++;
+			k++;
+		}
+		return A;
+		
 		
 	}
 	
