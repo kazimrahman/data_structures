@@ -19,13 +19,17 @@ class Sorts{
 		//insertionSort(nums);
 		//bubbleSort(nums);
 		//mergeSort(nums);*/
-		int[] a = {2,4,6,8};
-		int[] b = {1,3,5,7};
+		int[] a = {6,6,7,2,3,345,3,231,23,45,6,767,23,54,10};//{1,2,3,4,5,6,7,8,9,11,23,45,67,89,90,91,92};
+		int[] b = {2,3,4,5,6,7,8,12,23,34,56,58};
 		int c[] = new int[a.length+b.length];
 		
-		c = Merge(a,b,c);
+		MergeSort(a);
 		
-		System.out.println(Arrays.toString(c));
+		System.out.println(Arrays.toString(a));
+		
+		//c = merge(a, a.length,b, b.length);
+		
+		//System.out.println(Arrays.toString(c));
 		
 		int x = 5;
 		
@@ -81,43 +85,97 @@ class Sorts{
 	}
 	
 	static void MergeSort(int[] a){
+		int n = a.length;
+		if(n <2){return;}
+		int mid = n/2;
+		int[] r = new int[mid];
+		int[] l = new int[n-mid];
+		
+		for(int i = 0;i <mid;i++){
+			r[i] = a[i];
+		}
+		for(int i = 0;i <l.length;i++){
+			l[i] = a[mid+i];
+		}
+		//MergeSort(l);
+		//MergeSort(r);
+		//merge(l, l.length,r, r.length);
+		System.out.println("l :"  + Arrays.toString(l)+ " r: " + Arrays.toString(r));
 		
 	}
 	
-	static int[] Merge(int[] L, int[] R, int[] A){
+	static int[] merge(int[] L, int[] R, int[] A){
+		System.out.println("Merging");
 		int nL = L.length;
 		int nR = R.length;
 		
 		int i, j, k;
 		i = j = k = 0;
+		System.out.println("starting");
 		
-		while(nL > i && nR > j){
-			if(L[i] > R[j]){
+		while(i < nL && j < nR){
+			if(L[i] >= R[j]){
 				A[k] = R[j];
-				i++;
-				k++;
-				
-			}else if(R[j] > L[i]){
-				A[k] = L[i];
 				j++;
 				k++;
-				
+			}else if(R[j] >= L[i]){
+				A[k] = L[i];
+				i++;
+				k++;
 			}
 		}
-		while(i == nL && j < nR){
+		while(j < nR){
 			A[k] = R[j];
 			j++;
 			k++;
 		}
-		while(i < nL && j == nR){
+		while(i < nL){
 			A[k] = L[i];
 			i++;
 			k++;
 		}
 		return A;
-		
-		
 	}
+	public static int[] merge(int[] nums1, int m, int[] nums2, int n) {
+        int[] a = new int[m+n];
+        
+        System.out.println("m "+ m+ " n "+ n);
+        
+        int ml, nl, al;
+        ml = al = nl = 0;
+        //m = a.length - n;
+        
+        while(ml < m && nl < n){
+            if(nums1[ml] >= nums2[nl]){
+                a[al] = nums2[nl];
+                nl++;
+            }else if(nums1[ml] <= nums2[nl]){
+                a[al] = nums1[ml];
+                ml++;
+            }
+            al++;
+        }
+        
+        if(ml == m && nl == n){
+            return a;
+        }
+        System.out.println("size of a: "+a.length);
+        while(nl < n){
+            System.out.println("BEFORE: m "+ m+ " n "+ n+" ml "+ml+" nl "+nl+" al "+al);
+ //           System.out.println(a[0] + " " + a[1]);
+            a[al] = nums2[nl];
+            nl++;
+            al++;
+            System.out.println("AFTER: m "+ m+ " n "+ n+" ml "+ml+" nl "+nl+" al "+al);
+//            System.out.println(a[0] + " " + a[1]);
+        }
+        while(ml < m){
+            a[al] = nums1[ml];
+            ml++;
+            al++;
+        }
+        return a;
+    }
 	
 	
 	
