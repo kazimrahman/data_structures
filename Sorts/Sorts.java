@@ -88,23 +88,23 @@ class Sorts{
 		int n = a.length;
 		if(n <2){return;}
 		int mid = n/2;
-		int[] r = new int[mid];
-		int[] l = new int[n-mid];
+		int[] l = new int[mid];
+		int[] r = new int[n-mid];
 		
 		for(int i = 0;i <mid;i++){
-			r[i] = a[i];
+			l[i] = a[i];
 		}
-		for(int i = 0;i <l.length;i++){
-			l[i] = a[mid+i];
+		for(int i = 0;i <r.length;i++){
+			r[i] = a[mid+i];
 		}
-		//MergeSort(l);
-		//MergeSort(r);
-		//merge(l, l.length,r, r.length);
+		MergeSort(l);
+		MergeSort(r);
+		merge(l, l.length,r, r.length, a);
 		System.out.println("l :"  + Arrays.toString(l)+ " r: " + Arrays.toString(r));
 		
 	}
 	
-	static int[] merge(int[] L, int[] R, int[] A){
+	/*static int[] merge(int[] L, int[] R, int[] A){
 		System.out.println("Merging");
 		int nL = L.length;
 		int nR = R.length;
@@ -135,9 +135,9 @@ class Sorts{
 			k++;
 		}
 		return A;
-	}
-	public static int[] merge(int[] nums1, int m, int[] nums2, int n) {
-        int[] a = new int[m+n];
+	}*/
+	public static int[] merge(int[] nums1, int m, int[] nums2, int n,int[] a) {
+        //int[] a = new int[m+n];
         
         System.out.println("m "+ m+ " n "+ n);
         

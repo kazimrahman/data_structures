@@ -19,14 +19,14 @@ class Node{
 	}
 	 public void setData(int x){
 		 this.data = x;
-	 }
+	}
 
 	public Node getNext(){
 		return this.next;
 	}
 	 public void setNext(Node n){
 		 this.next = n;
-	 }
+	}
 	 
 }
 
@@ -46,25 +46,23 @@ class LinkedList{
 		return this.size;
 	}
 	
-	/*public void reverse(){
-		Node prev = null;
-		Node track = null;
+	public void reverse(){
 		
 		if(head == null || head.next == null){
 			return;
 		}
-		
-		tail = head;
-		while(head != null){
+		Node bong = head;
+		Node t = null;
+		Node track = null;
+		while(head!=null){
 			track = head.next;
-			head.next = prev;
-			prev = head;
+			head.next = t;
+			t = head;
 			head = track;
 		}
-		
-		
+		head = t;
 		return;
-	}*/
+	}
 	
 	public void deleteEnd(){
 		if(head == null){return;}
@@ -127,13 +125,15 @@ class LinkedList{
 		Node tmp = head;
 		System.out.print("[ " + tmp.data);
 		tmp = tmp.next;
-		if(tmp!=null){
+		
+		if(tmp==null){return;}
+		
 		for(int i = 1; i < size; i++){
 			System.out.print(" --> "+tmp.data);
 			tmp = tmp.next;
 			
 		}
-		}
+		
 		System.out.println(" ]");
 		
 		
