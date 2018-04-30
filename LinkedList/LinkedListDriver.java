@@ -18,6 +18,11 @@ class LinkedListDriver{
 		l.printList();
 		l.reverse();
 		l.printList();
+		System.out.println();
+		System.out.println(l.lengthR(l.head));
+		l.printList();
+		l.deleteSpecific(5);
+		l.printList();
 		/*BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		Scanner in = new Scanner(br.readLine());
 		while(in.hasNextInt()){

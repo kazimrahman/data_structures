@@ -24,8 +24,8 @@ class Tree{
 		}
 		
 		inOrder(n.left);
+		System.out.println(n.value);
 		inOrder(n.right);
-				System.out.println(n.value);
 
 		return;
 		
@@ -45,46 +45,38 @@ class Tree{
 	
 	public static boolean check(Node n){
 		Node prev = null;
-		return check(n);
+		return check(n, prev);
 	}
 	
-	/*public static boolean check(Node n, Node prev){
+	public static boolean check(Node n, Node prev){
 		
 		if(n != null){
-		
-		
-			if(n.left.data > n.data){
+			if(check(n.left,prev) != true){
 				return false;
 			}
-			if(n.right.data < n.data){
+			if(prev != null && n.value <= prev.value){
 				return false;
 			}
-			
-		
+			prev = n;
+			return check(n.right, prev);
 		}
 		
+		
 		return true;
-	}*/
+	}
+	
 	
 	public static void levelOrder(Node n){
 		Queue<Node> q = new LinkedList<Node>();
 		q.add(n);
-		/*while(q.isEmpty()==false){
-			Node temp = q.poll();
-			System.out.println(temp.value);
-			if(temp.left != null) {q.offer(temp.left);}
-			
-			if(temp.right != null){ q.offer(temp.right);}
-			
-			temp = q.poll();
-			*/
-			while (!q.isEmpty()){
+		while (!q.isEmpty()){
 			Node temp = q.poll(); 
 			System.out.print(temp.value + " ");
-			if (temp.left != null) q.offer(temp.left);
-			
-			if (temp.right != null) q.offer(temp.right);
-		//}
+			if (temp.left != null) 
+				q.offer(temp.left);
+
+			if (temp.right != null) 
+				q.offer(temp.right);
 		}
 		return;
 		
@@ -93,7 +85,7 @@ class Tree{
 	public static void main(String[] args){
 		Tree t = new Tree();
 		t.root = new Node(5);
-		t.root.left = new Node(3);
+		t.root.left = new Node(8);
 		t.root.left.right = new Node(4);
 		t.root.left.left = new Node(2);
 		t.root.right = new Node(7);
@@ -103,6 +95,8 @@ class Tree{
 		System.out.println();
 		levelOrder(t.root);
 		System.out.println();
+		
+		System.out.println(check(t.root));
 		
 		System.out.println(height(t.root));
 		

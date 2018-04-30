@@ -46,12 +46,22 @@ class LinkedList{
 		return this.size;
 	}
 	
+	//just for practice, already have size property
+	public int lengthR(Node head){
+		Node n = head;
+		if(n == null){
+			return 0;
+		}
+		return lengthR(n.next)+1;
+	}
+	
+	
 	public void reverse(){
 		
+		// no need to reverse if empty or size 1
 		if(head == null || head.next == null){
 			return;
 		}
-		Node bong = head;
 		Node t = null;
 		Node track = null;
 		while(head!=null){
@@ -61,6 +71,32 @@ class LinkedList{
 			head = track;
 		}
 		head = t;
+		return;
+	}
+	
+	//only works for all unique elements
+	public void deleteSpecific(int s){
+		if(this.head == null){
+			System.out.println("Empty list");
+			return;
+		}
+		if(this.head.data == s){
+			this.head = this.head.next;
+			size--;
+			System.out.println("Deleted "+ s);
+			return;
+		}
+		Node n = this.head;
+		while(n.next != null){
+			if(n.next.data == s){
+				n.next = n.next.next;
+				size--;
+				System.out.println("Deleted "+ s);
+			}else{
+				n = n.next;
+			}
+		}
+		
 		return;
 	}
 	

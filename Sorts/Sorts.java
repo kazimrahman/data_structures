@@ -37,6 +37,29 @@ class Sorts{
 		
 	}
 	
+	public static void quickSort(int[] A, int start, int end){
+		if(start >= end){
+			return;
+		}
+		int pindex = partition(A, start, end);
+		quickSort(A, start, pindex -1);
+		quickSort(A, pindex +1,end);
+	}
+	
+	public static int partition(int[] A, int start, int end){
+		int pivot = A[end];
+		int pivot_i = start;
+		int temp = 0;
+		for(int i = 0; i < end - 1; i++){
+			if(A[i] <= pivot){
+				
+			}
+			temp = 0;
+		}
+		return pivot_i;
+		
+	}
+	
 	public static void selectSort(int[] a){
 		int n = a.length;
 		for(int i = 0; i < n-1; i++){
@@ -75,6 +98,7 @@ class Sorts{
 			int val = a[i];
 			int hole = i-1;
 			while(hole>=0 && a[hole]>val){
+				//push elements up as needed
 				a[hole+1] = a[hole];
 				hole--;
 				
