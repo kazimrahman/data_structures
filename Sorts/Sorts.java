@@ -19,11 +19,11 @@ class Sorts{
 		//insertionSort(nums);
 		//bubbleSort(nums);
 		//mergeSort(nums);*/
-		int[] a = {6,6,7,2,3,345,3,231,23,45,6,767,23,54,10};//{1,2,3,4,5,6,7,8,9,11,23,45,67,89,90,91,92};
+		int[] a = {9,8,7,6,5,4,3,2,1};//{1,2,3,4,5,6,7,8,9,11,23,45,67,89,90,91,92};
 		int[] b = {2,3,4,5,6,7,8,12,23,34,56,58};
 		int c[] = new int[a.length+b.length];
 		
-		MergeSort(a);
+		qsort(a, 0, a.length-1);
 		
 		System.out.println(Arrays.toString(a));
 		
@@ -37,28 +37,38 @@ class Sorts{
 		
 	}
 	
-	public static void quickSort(int[] A, int start, int end){
-		if(start >= end){
-			return;
+	public static void qsort(int[] arr, int start, int end){
+		if(start < end){
+			
+			int pindex = partition(arr, start, end);
+			qsort(arr, start, pindex - 1);
+			qsort(arr, pindex + 1, end);
 		}
-		int pindex = partition(A, start, end);
-		quickSort(A, start, pindex -1);
-		quickSort(A, pindex +1,end);
+		return;
 	}
-	
-	public static int partition(int[] A, int start, int end){
-		int pivot = A[end];
-		int pivot_i = start;
-		int temp = 0;
-		for(int i = 0; i < end - 1; i++){
-			if(A[i] <= pivot){
-				
+
+	public static int partition(int[] arr, int start, int end){
+		//choose a pivot
+		int pivot = arr[end];
+		System.out.println(Arrays.toString(arr));
+		//start scanning
+		int p_i = start;
+		for(int i = start; i < end; i++){
+			if(arr[i] <= pivot){
+				int temp = arr[i];
+				arr[i] = arr[p_i];
+				arr[p_i] = temp;
+				p_i++;
 			}
-			temp = 0;
 		}
-		return pivot_i;
+		int t = arr[end];
+		arr[end] = arr[p_i];
+		arr[p_i] = t;
+		return p_i;
+		
 		
 	}
+	
 	
 	public static void selectSort(int[] a){
 		int n = a.length;
@@ -128,38 +138,7 @@ class Sorts{
 		
 	}
 	
-	/*static int[] merge(int[] L, int[] R, int[] A){
-		System.out.println("Merging");
-		int nL = L.length;
-		int nR = R.length;
-		
-		int i, j, k;
-		i = j = k = 0;
-		System.out.println("starting");
-		
-		while(i < nL && j < nR){
-			if(L[i] >= R[j]){
-				A[k] = R[j];
-				j++;
-				k++;
-			}else if(R[j] >= L[i]){
-				A[k] = L[i];
-				i++;
-				k++;
-			}
-		}
-		while(j < nR){
-			A[k] = R[j];
-			j++;
-			k++;
-		}
-		while(i < nL){
-			A[k] = L[i];
-			i++;
-			k++;
-		}
-		return A;
-	}*/
+	
 	public static int[] merge(int[] nums1, int m, int[] nums2, int n,int[] a) {
         //int[] a = new int[m+n];
         

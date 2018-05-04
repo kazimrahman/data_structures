@@ -77,6 +77,8 @@ class Tree{
 
 			if (temp.right != null) 
 				q.offer(temp.right);
+			
+			System.out.println();
 		}
 		return;
 		
