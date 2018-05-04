@@ -28,8 +28,40 @@ class Tree{
 		inOrder(n.right);
 
 		return;
-		
 	}
+	
+	/*
+	1) Create an empty stack S.
+2) Initialize current node as root
+3) Push the current node to S and set current = current->left until current is NULL
+4) If current is NULL and stack is not empty then 
+     a) Pop the top item from stack.
+     b) Print the popped item, set current = popped_item->right 
+     c) Go to step 3.
+5) If current is NULL and stack is empty then we are done.
+*/
+
+	public static void inOrderIter(Node n){
+		Stack s = new Stack<Node>();
+		Node temp = n;
+		
+		while(temp != null){
+			s.push(temp);
+			temp = temp.left;
+		}
+		while(!s.isEmpty()){
+				temp = (Node)s.pop();
+				System.out.println(temp.value);
+			if(temp.right != null){
+				temp = temp.right;
+				while(temp != null){
+					s.push(temp);
+					temp = temp.left;
+				}
+			}
+		}
+	}
+	
 	public static int height(Node n){
 		if(n == null){return -1;}
 			
@@ -69,7 +101,11 @@ class Tree{
 	public static void levelOrder(Node n){
 		Queue<Node> q = new LinkedList<Node>();
 		q.add(n);
-		while (!q.isEmpty()){
+		
+		while(true){
+			int count = q.size();
+			if(count == 0) break;
+		while (count>0){
 			Node temp = q.poll(); 
 			System.out.print(temp.value + " ");
 			if (temp.left != null) 
@@ -78,7 +114,9 @@ class Tree{
 			if (temp.right != null) 
 				q.offer(temp.right);
 			
-			System.out.println();
+			count--;
+		}
+		System.out.println();
 		}
 		return;
 		
@@ -98,9 +136,11 @@ class Tree{
 		levelOrder(t.root);
 		System.out.println();
 		
-		System.out.println(check(t.root));
+		inOrderIter(t.root);
 		
-		System.out.println(height(t.root));
+		//System.out.println(check(t.root));
+		
+		//System.out.println(height(t.root));
 		
 		Node[] meep = {t.root,t.root.left};
 	}
